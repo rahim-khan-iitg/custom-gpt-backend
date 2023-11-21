@@ -1,0 +1,7 @@
+langchain
+sentence_transformers
+flask
+flask_cors
+huggingface_hub
+qdrant-client
+python-dotenv
