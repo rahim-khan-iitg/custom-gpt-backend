@@ -1,4 +1,5 @@
 langchain
+gunicorn
 sentence_transformers
 flask
 flask_cors
