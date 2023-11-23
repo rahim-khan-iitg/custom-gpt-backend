@@ -23,8 +23,8 @@ class QueryModel:
 
     def chat(self,question:str):
         llm=load_LLM()
-        # retriever1=connect_to_qdrant_as_retriver()
-        retriever1=connect_to_chroma_as_retriver()
+        retriever1=connect_to_qdrant_as_retriver()
+        # retriever1=connect_to_chroma_as_retriver()
         qa = RetrievalQA.from_chain_type(llm=llm, retriever=retriever1, chain_type="stuff",return_source_documents=False)
         response=qa(question)
         return response
