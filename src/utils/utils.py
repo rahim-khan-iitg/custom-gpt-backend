@@ -1,5 +1,5 @@
-from src.logger import logging
-from src.exceptions import CustomException
+from utils.logger import logging
+from utils.exceptions import CustomException
 from dotenv import load_dotenv
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.llms import HuggingFaceHub
@@ -7,6 +7,13 @@ from langchain.vectorstores import Qdrant
 from qdrant_client import QdrantClient
 from langchain.embeddings import HuggingFaceInferenceAPIEmbeddings
 import os,sys
+
+from chromadb.config import Settings
+import chromadb
+from langchain.vectorstores import Chroma
+
+CHROMA_SETTINGS = Settings(persist_directory="./",anonymized_telemetry=False)
+
 load_dotenv(".env")
 HUGGINGFACE_EMBEDDING_REPO_ID=os.environ.get("HUGGINGFACE_EMBEDDING_REPO_ID")
 HUGGINGFACE_LLM_REPO_ID=os.environ.get("HUGGINGFACE_LLM_REPO_ID")
@@ -17,6 +24,7 @@ QDRANT_API_KEY=os.environ.get("QDRANT_API_KEY")
 def load_embedding_model():
     try:
         logging.info("loading embedding model")
+        print(HUGGINGFACE_EMBEDDING_REPO_ID)
         # embedding_model=HuggingFaceEmbeddings(model_name=HUGGINGFACE_EMBEDDING_REPO_ID) # this model downloads the binary file locally
         embedding_model=HuggingFaceInferenceAPIEmbeddings(api_key=HUGGINGFACE_API_TOKEN,model_name=HUGGINGFACE_EMBEDDING_REPO_ID)
         logging.info("model successfully loaded")
@@ -44,3 +52,10 @@ def connect_to_qdrant_as_retriver():
     qdrant=Qdrant(client=client,collection_name=collection_name,embeddings=embedding_model)
     retriver=qdrant.as_retriever()
     return retriver
+
+def connect_to_chroma_as_retriver():
+    embedding_model=load_embedding_model()
+    chroma_client = chromadb.PersistentClient(settings=CHROMA_SETTINGS , path="./")
+    db = Chroma(persist_directory="./", embedding_function=embedding_model, client_settings=CHROMA_SETTINGS, client=chroma_client)
+    retriever=db.as_retriever()
+    return retriever

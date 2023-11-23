@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e0f8986e-3509-47e2-acfe-c3c19e95b8b2/resourceGroups/rahim-khan_group/providers/Microsoft.Web/sites/rahim-khan/subscriptions/e0f8986e-3509-47e2-acfe-c3c19e95b8b2/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/custom-llm",
+    "appService.deploySubpath": "."
+}

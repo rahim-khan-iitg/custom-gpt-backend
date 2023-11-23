@@ -1,3 +1,7 @@
 .git*
 **/*.pyc
 .venv/
+build
+logs
+dist
+.env

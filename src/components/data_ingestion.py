@@ -1,7 +1,7 @@
 import os
 import sys
-from src.logger import logging
-from src.exceptions import CustomException
+from utils.logger import logging
+from utils.exceptions import CustomException
 from langchain.document_loaders.csv_loader import CSVLoader
 from dataclasses import dataclass
 

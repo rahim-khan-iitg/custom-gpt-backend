@@ -1,15 +1,8 @@
-# syntax=docker/dockerfile:1
-
 FROM python:3.10
-
-WORKDIR /code
-
-COPY requirements.txt .
-
-RUN pip3 install -r requirements.txt
-
-COPY . .
-
-EXPOSE 50505
-
-ENTRYPOINT ["gunicorn", "app:app"]
+WORKDIR /app
+COPY . /app/
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir .
+EXPOSE 5000
+CMD python app.py

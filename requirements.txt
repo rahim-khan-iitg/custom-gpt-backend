@@ -1,8 +1,8 @@
 langchain
-gunicorn
-sentence_transformers
+chromadb
 flask
 flask_cors
 huggingface_hub
 qdrant-client
 python-dotenv
+sentence_transformers
