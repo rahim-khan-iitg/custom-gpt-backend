@@ -1,4 +1,4 @@
-# Chaabi Assignment 2023
+# Custom GPT Backend 
 This Repository contains the code for custom gpt . Which can generate the answers from the given context. Here we have used a CSV file as source for context. which can be found [here](https://github.com/rahim-khan-iitg/custom-gpt-backend/tree/master/data). 
 
 <b>This Project is divided into 2 section <i>Backend</i> and <i>Frontend</i> . This Repo contains the Backend part and frontend can be found [here](https://github.com/rahim-khan-iitg/custom-gpt-frontend) 
